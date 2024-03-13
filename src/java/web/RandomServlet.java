@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Gabriela-Novo
  */
-@WebServlet(name = "MeServlet", urlPatterns = {"/me.html"})
-public class MeServlet extends HttpServlet {
+@WebServlet(name = "RandomServlet", urlPatterns = {"/random.html"})
+public class RandomServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,17 +35,32 @@ public class MeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>MeServlet</title>");            
+            out.println("<title>Random Servlet</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h4><a href='index.html'>Voltar</a></h4>");
-            out.println("<h1>RA: 1290482222031</h1>");
-            out.println("<h2>Nome: Gabriela Gouvea da Rocha Novo</h2>");
-            out.println("<h2>24</h2>");
+            out.println("<h3>Tabela de Números Aleatórios</h3>");
+            out.println("<table border = '1'>");
+            out.println("<tr>");
+            out.println("<th>Index</th> <th>Number</th>");
+            
+            boolean [] vet = new boolean [61];
+            for (int i=1; i<=6; i++){
+                out.println("<tr>");
+                out.println("<th>"+i+"</th>");
+                int rand;
+                do {rand = ((int)(Math.random()*60)+1);
+                    }while (vet[rand]);
+                    vet[rand] = true;
+                    out.println("<td>"+rand+"</td>");
+            }
+            out.println("</tr>");                        
+            out.println("</table>");
             out.println("</body>");
             out.println("</html>");
         }
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -85,5 +100,5 @@ public class MeServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-}
+    
+}    
